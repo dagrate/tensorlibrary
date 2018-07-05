@@ -12,6 +12,9 @@ The library uses the following modules:
 - numpy (pip install numpy)
 - numba (pip install numba)
 
+It is advised to install BLAS/LAPACK to increase the efficiency of the computations:  
+sudo apt-get install libblas-dev liblapack-dev gfortran
+
 ## Citation
 Please cite the following article if you use the library for your work and/or publications:
 
