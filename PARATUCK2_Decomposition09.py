@@ -215,7 +215,7 @@ def PARATUCK2_Decomposition(X, latfact,
 
     
 def main():
-    tnsr_size = (10, 10, 10)
+    tnsr_size = (4, 5, 6)
     X = tenseur_init((tnsr_size))
     latfact = (5,7)
     maxiter = 1000
@@ -230,9 +230,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-    
-#    %load_ext line_profiler
-#    %lprun -f PARATUCK2_Decomposition PARATUCK2_Decomposition(X, latfact, \
-#                                decompType="PARATUCK2",  \
-#                                maxiter=maxiter, eps=1.0E-8, \
-#                                eps_objfnct = 1.0E-3, NonNgtv="Y")
