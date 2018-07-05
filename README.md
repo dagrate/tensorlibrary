@@ -5,7 +5,7 @@ Tensor Resolution Algorithms for Various Decomposition
 
 As of today, the following decompositions and resolutions are available:
 - DEDICOM, ALS and nn-ALS resolution
-- PARATUCK2, ALS and nn-ALS
+- PARATUCK2, ALS and nn-ALS resolution
 
 ## Dependencies
 The library uses the following modules:
