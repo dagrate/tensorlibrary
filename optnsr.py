@@ -17,6 +17,7 @@
     ----------
     1.0 | 01 Jan 2017 | Jeremy CHARLIER | Initial Creation\n
     2.0 | 03 Jun 2018 | Jeremy CHARLIER | Optimization using numba
+    3.0 | 06 Jul 2018 | Jeremy CHARLIER | Optimization of Krao product
 """
 
 import numpy as np
@@ -51,13 +52,47 @@ def kr_size(C_dim, D_dim):
     
 @jit(nopython=True)   
 def kr_prod(Xkr, C, D):
-    Clin=C.shape[0];Ccol=C.shape[1]
-    Dlin=D.shape[0];Dcol=D.shape[1]
+    """ 
+    Krao product using numba (deprecated)
+    """
+    Clin=C.shape[0]
+    Ccol=C.shape[1]
+    Dlin=D.shape[0]
+    Dcol=D.shape[1]
     if Ccol != Dcol:
         raise ValueError("All matrices must have the same number of columns.")
     for jtr in range(Clin):
         Xkr[Dlin*jtr:Dlin*(jtr+1)] = np.multiply(C[jtr].T, D)
     return Xkr
+
+
+@jit(nopython=True)   
+def jitted_krao(Xkr, C, D):
+    """ 
+    jitted loop for the function kraonb
+    """
+    Clin = C.shape[0]
+    Ccol = C.shape[1]
+    Dlin = D.shape[0]
+    Dcol = D.shape[1]
+    if Ccol != Dcol:
+        raise ValueError("All matrices must have the same number of columns.")
+    for jtr in range(Clin):
+        Xkr[Dlin*jtr:Dlin*(jtr+1)] = C[jtr].T * D
+    return Xkr
+
+
+@jit
+def kraonb(A, B):
+    """ 
+    Perform Krao product using numba implementation. 
+    """
+    A_dim = A.shape
+    B_dim = B.shape
+    C_dim = [ A_dim[0]*B_dim[0], B_dim[1] ]
+    res = np.zeros(C_dim)
+    return jitted_krao(res, A, B)
+
 
 @jit(nopython=True)
 def nmb_krao(C, D, clin, ccol, dlin, arr):
@@ -75,9 +110,9 @@ def nmb_kron(ar01, ar02):
     return np.kron(ar01, ar02)
     
 @jit(nopython=True)
-def jitted_loop(res, A, B):
+def jitted_kron(res, A, B):
     """ 
-    Perform Kronecker product between A and B and store the result in res. 
+    jitted loop for the function kronnb
     """
     ni = 0
     nf = len(B)
@@ -105,7 +140,7 @@ def kronnb(A, B):
     """
     shape = ( A.shape[0]*B.shape[0], A.shape[1]*B.shape[1] )
     res = np.zeros(shape)
-    return jitted_loop(res, A, B)
+    return jitted_kron(res, A, B)
 
 
 @jit(nopython=True)
