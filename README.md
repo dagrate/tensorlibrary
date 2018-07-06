@@ -3,6 +3,7 @@
 tensorlibrary is a Python library that focuses on less commonly known tensor decompositions such as DEDICOM and PARATUCK2. CP/PARAFAC is also available since it is the most popular. The library allows to perform tensor decomposition and tensor algebra in a simple way.
 
 As of today, the following decompositions and resolutions are available:
+- CP/PARAFAC, nn-ALS resolution
 - DEDICOM, ALS and nn-ALS resolution
 - PARATUCK2, ALS and nn-ALS resolution
 
