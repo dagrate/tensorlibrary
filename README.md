@@ -46,7 +46,7 @@ print("X_hat = ", opt.build_PRTCK2(tnsr_size, A, DA, R, DB, B.T))
 
 ## Citing
 
-If you use tensorlibrary in an academic paper, please cite::
+If you use tensorlibrary in an academic paper, please cite:
 
 ```bibtex
 @inproceedings{charlier2018non,
