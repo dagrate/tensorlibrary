@@ -19,8 +19,7 @@ def init_parameters(I, J, K, P, Q):
     return A, DA, R, DB, B
  
 
-def PARATUCK2_Decomposition(X, latfact, 
-                            decompType = "PARATUCK2", 
+def paratuck2(X, latfact, decompType = "PARATUCK2", 
                             maxiter = 20000, eps = 1.0E-4, 
                             eps_objfnct = 1.0E-8, NonNgtv="Y"):
     """
@@ -60,7 +59,7 @@ def PARATUCK2_Decomposition(X, latfact,
     ----------
     1.0 | 14 Dec 2016 | Jeremy CHARLIER | Initial Creation\n
     2.0 | 20 Dec 2016 | Jeremy CHARLIER | Further Development\n
-    3.0 | 02 Feb 2017 | Jeremy CHARLIER | Optimization
+    3.0 | 02 Feb 2017 | Jeremy CHARLIER | Optimization\n
     3.1 | 03 Jun 2018 | Jeremy CHARLIER | Optimization using numba
 """
     time_start = time.clock() #-> measure calculation time
@@ -215,12 +214,11 @@ def PARATUCK2_Decomposition(X, latfact,
 
     
 def main():
-    tnsr_size = (4, 5, 6)
+    tnsr_size = (10, 10, 10)
     X = tenseur_init((tnsr_size))
     latfact = (5,7)
     maxiter = 1000
-    A, DA, R, DB, B = \
-        PARATUCK2_Decomposition(X, latfact, 
+    A, DA, R, DB, B = paratuck2(X, latfact, 
                                 decompType="PARATUCK2",  
                                 maxiter=maxiter, eps=1.0E-8, 
                                 eps_objfnct = 1.0E-3, NonNgtv="Y")
