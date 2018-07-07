@@ -51,7 +51,7 @@ If you use tensorlibrary in an academic paper, please cite:
 ```bibtex
 @inproceedings{charlier2018non,
   title={Non-negative Paratuck2 Tensor Decomposition Combined to LSTM Network for Smart Contracts Profiling},
-  author={Charlier, Jeremy and State, Radu and others},
+  author={Charlier, Jeremy and Hilger, Jean and others},
   booktitle={Big Data and Smart Computing (BigComp), 2018 IEEE International Conference on},
   pages={74--81},
   year={2018},
