@@ -39,6 +39,7 @@ A, DA, R, DB, B = paratuck2(X, latfact,
 
 We can rebuild the tensor inherited from the decomposition using 
 ```python
+import optnsr as opt
 print("X_hat = ", opt.build_PRTCK2(tnsr_size, A, DA, R, DB, B.T))
 ```
 
